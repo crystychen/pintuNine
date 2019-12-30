@@ -1,0 +1,55 @@
+<!-- =============================== 拼图保存成功 ======================================== -->
+<view class="pintu-page">
+  <!-- 头部九宫格图片展示 -->
+  <view class="row" hover-class="none" hover-stop-propagation="false">
+    <view class="wrap" hover-class="none" hover-stop-propagation="false">
+      <image class="icon" src="/image/weixin.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+      </image>
+      <view class="text" hover-class="none" hover-stop-propagation="false">微信朋友圈分享教程</view>
+
+    </view>
+  </view>
+  <view class="images-list">
+    <view class="item" wx:for="{{frameSrcs}}" wx:key="*this" hover-class="none" hover-stop-propagation="false">
+      <view class="item-wrap" hover-class="none" hover-stop-propagation="false">
+
+        <image class="img" src="{{item.src}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+        </image>
+        <view class="num" hover-class="none" hover-stop-propagation="false">
+          {{index + 1}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="tips" hover-class="none" hover-stop-propagation="false">
+    请到相册按照1到9的顺序分享这批照片，即可有如下效果哦~
+  </view>
+  <view class="media" hover-class="none" hover-stop-propagation="false">
+    <view class="left" hover-class="none" hover-stop-propagation="false">
+      <!-- <image class="img" src="{{userInfo.avatarUrl}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image> -->
+      <open-data class="img" type="userAvatarUrl"></open-data>
+    </view>
+    <view class="right" hover-class="none" hover-stop-propagation="false">
+      <view class="text-top" hover-class="none" hover-stop-propagation="false">
+        <!-- {{userInfo.nickName}}   -->
+      <open-data  type="userNickName"></open-data>
+      </view>
+      <view class="text-bottom" hover-class="none" hover-stop-propagation="false">
+        你还别说，这个搞机超好玩小程序还挺好用的
+      </view>
+      <view class="img-wrap" hover-class="none" hover-stop-propagation="false">
+        <image class="img" src="{{oneSrc}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+      </view>
+    </view>
+  </view>
+  <view class="share-row" hover-class="none" hover-stop-propagation="false">
+    <view class="icon">
+      <button class="auth-btn" open-type="share"></button>
+      <image class="img" src="/image/share.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+      </image>
+    </view>
+    <view class="text" hover-class="none" hover-stop-propagation="false">
+      偷偷分享
+    </view>
+  </view>
+</view>

@@ -1,0 +1,62 @@
+<view class="splice-page">
+  <!-- 隐藏canvas -->
+  <canvas canvas-id="tempCanvas" style="width:750rpx;height:{{totalHeight}}px;position:absolute;left:-999999px"></canvas>
+
+  <!-- 拼相框页面 -->
+  <view class="photoframe" wx:if="{{page==='photoFrame'}}" style="height:{{frameHeight}}px" bindtouchstart="uploadScaleStart" bindtouchmove="uploadScaleMove" bindtouchend="uploadScaleEnd">
+
+    <image class="frame" src="{{frameSrc}}" mode="widthFix"></image>
+    <image class="photo" src="{{photoSrc}}" style="width:{{photoWidth}}px;height:{{photoHeight}}px;top:{{photoTop}}px;left:{{photoLeft}}px" disable-scroll="true"></image>
+
+  </view>
+    <view class="toolbar-center">
+      <view bindtap="changeType1">
+        <text class="text">拼图</text>
+      </view>
+      <!-- changeType2 -->
+      <view bindtap=''>
+        <text class="text" style="font-weight: bold;">边框</text>
+      </view>
+      <view bindtap='changeType3'>
+        <text class="text">姓氏</text>
+      </view>
+    </view>
+  <!-- 拼相框页面 - 底部工具栏 -->
+  <view class="toolbar-bottom" wx:if="{{page==='photoFrame'}}">
+    <view class="row">
+      <view class="btn border" bindtap='addFrame'>
+        <button wx:if="{{canIUse}}" class="auth-btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"></button>
+        <!-- <text class="icon-frame"></text> -->
+        获取头像
+      </view>
+      <view class="btn active" bindtap='saveImgToPhone'>
+        <!-- <text class="icon-photo"></text> -->
+        生成照片
+      </view>
+    </view>
+    <view class="icon-btn" bindtap='addPhoto'>
+      <view class="icon">
+        <image class="img" src="/image/reset.png"></image>
+      </view>
+      <text class="text">更换照片</text>
+    </view>
+  </view>
+  <!-- 相框选择窗口 -->
+  <view class="farmeChoose">
+    <view class="farmeChoose-top">
+      <text class="farmeChoose-top-left">请选择模板</text>
+    </view>
+    <scroll-view scroll-x="true">
+      <view wx:for="{{frameSrcs}}" wx:key="*this" data-src="{{item.src}}" data-index="{{index}}" class="frameBox" bindtap='chooseFrame'>
+        <view class="img-wrap">
+        <!-- '../../image/frame70/'+ -->
+          <image src="{{item.src}}" mode="aspectFit"></image>
+        </view>
+        <view class="choosed-icon" wx:if="{{index == choosedIndex}}">
+          <image class="img" src="/image/my_btn_choose_def.png" mode="aspectFill"></image>
+        </view>
+        <!-- <text>{{item.title}}</text> -->
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,71 @@
+<!-- =============================== 拼图 ======================================== -->
+<view class="pintu-page">
+  <!-- 保存按钮 
+  <view class="saveButton"  wx:if="{{!isTextEdit}}" bindtap='saveImgToPhone'><text class="icon-save"></text></view>-->
+  <view class="bcg" wx:if="{{building}}">
+    <view style="margin-bottom: 200rpx;">正在建设中...</view>
+  </view>
+  <!-- 头部九宫格画布 -->
+  <view class="imageView flex-view">
+    <!-- <image src="{{emotionUrl}}" disable-scroll="true"></image> -->
+    <!-- <canvas canvas-id="tempCanvas" class="" disable-scroll="true" style="width:400rpx; height:400rpx;position:absolute;left:-99999px;"></canvas> -->
+    <!-- <canvas class='canvas-container2' disable-scroll="true"  canvas-id="myCanvas2"></canvas> -->
+    <canvas class='canvas-container' disable-scroll="true" bindtouchend="oneImg" canvas-id="myCanvas"></canvas>
+    
+  </view>
+  <!-- 底部按钮工具 -->
+  <view class="toolbar-bottom">
+    <view class="">
+      <view class="btn active {{btnDis?'disable':''}}" bindtap='saveImgToPhone'>
+        生成照片
+      </view>
+    </view>
+    <view class="icon-btn" bindtap='reset'>
+      <view class="icon">
+        <image class="img" src="/image/reset.png"></image>
+      </view>
+      <text class="text">重置</text>
+    </view>
+  </view>
+  <!-- tab导航 -->
+  <view class="toolbar-center">
+    <!-- changeType1 -->
+    <view bindtap="">
+      <text class="text" style="font-weight: bold;">拼图</text>
+    </view>
+    <view bindtap='changeType2'>
+      <text class="text">边框</text>
+    </view>
+    <view bindtap='changeType3'>
+      <text class="text">姓氏</text>
+    </view>
+  </view>
+  <!-- 模板选择窗口 -->
+  <view class="farmeChoose">
+    <view class="farmeChoose-top">
+      <text class="farmeChoose-top-left">请选择模板</text>
+      <view class="farmeChoose-top-right">
+        <text class="" bindtap="openActionsheet">{{saveType?'单图模式':'九宫格模式'}}</text>
+        <view class="caret {{istoggle?'down':'left'}}" hover-class="none" hover-stop-propagation="false">
+        </view>
+      </view>
+    </view>
+    <scroll-view scroll-x="true">
+      <view wx:for="{{pintu}}" wx:key="*this" data-src="{{item.icon}}" data-path="{{item.type}}" data-index="{{index}}" class="frameBox" bindtap='chooseFrame'>
+        <view class="img-wrap">
+          <image class="big-img" src="{{item.icon}}" mode="aspectFit"></image>
+        </view>
+        <view class="choosed-icon" wx:if="{{index == choosedIndex}}">
+          <image class="img" src="/image/my_btn_choose_def.png" mode="aspectFill"></image>
+        </view>
+        <view class="text">{{item.name}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+
+  <canvas class='canvas-container2' canvas-id="myCanvas2"></canvas>
+  <!-- 指示图片 -->
+  <canvas class='canvas-container3' canvas-id="myCanvas3"></canvas>
+  <canvas class='canvas-container4' canvas-id="myCanvas4"></canvas>
+</view>

@@ -1,0 +1,249 @@
+<!-- =============================== 拼图 ======================================== -->
+<view class="pintu-page" wx:if="{{isShowPintu}}">
+  <!-- 保存按钮 
+  <view class="saveButton"  wx:if="{{!isTextEdit}}" bindtap='saveImgToPhone'><text class="icon-save"></text></view>-->
+  <view class="imageView">
+    <image src="{{emotionUrl}}" disable-scroll="true"></image>
+    <text wx:for="{{allText}}" wx:key="idx" bindtap="{{item.isTextActive?'focusInput':null}}" bindtouchstart="{{item.isTextActive?'textMoveStart':null}}" bindtouchmove="{{item.isTextActive?'textMove':null}}" class="{{item.isTextActive?'active-text':'compete-text'}}"
+      style="left:{{item.textL}}px;top:{{item.textT}}px;font-size:{{item.fontSize}}px;color:{{item.fontColor}};font-style:{{item.fontStyle}};font-weight:{{item.fontWeight}}">{{item.someText}}</text>
+    <input focus="{{inputFocus}}" confirm-type="done" bindinput="inputText" style="position:absolute;top:0;left:-9999px;"></input>
+    <canvas canvas-id="tempCanvas" disable-scroll="true" style="width:400rpx; height:400rpx;position:absolute;left:-99999px;"></canvas>
+  </view>
+  <view>
+    <view wx:if="{{isChooseFontSize}}" class="toolbar-top toolbar-width">
+      <view class="slider-box">
+        <slider bindchange="fontsizeSliderChange" min="8" max="200" value="14" show-value></slider>
+      </view>
+    </view>
+    <view wx:if="{{isChooseFontColor}}" class="toolbar-top">
+      <view class="color-box">
+        <view wx:for="{{allColor}}" class="color-point" data-selected="{{item}}" style="background:{{item}}" bindtap='fontColorChange'></view>
+      </view>
+    </view>
+    <view wx:if="{{isChooseFontPattern}}" class="toolbar-top toolbar-font-style">
+      <view>
+        <text>斜体 : </text>
+        <switch bindchange="fontStyleChange" />
+      </view>
+      <view>
+        <text>加粗 : </text>
+        <switch bindchange="fontWeightChange" />
+      </view>
+    </view>
+
+    <view class="toolbar-bottom">
+      <!-- <view>
+        <text>请输入姓氏</text>
+        <input confirm-type="done" placeholder="请输入姓氏" maxlength="1" bindinput="inputText"></input>
+        <button bindtap="competeAddText">生成图片</button>
+      </view> -->
+      <view class="row">
+        <view class="btn border" bindtap='addFrame'>
+          <button wx:if="{{canIUse}}" class="auth-btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"></button>
+          <!-- <text class="icon-frame"></text> -->
+          获取头像
+        </view>
+        <view class="btn active" bindtap='saveImgToPhone'>
+          <!-- <text class="icon-photo"></text> -->
+          生成照片
+        </view>
+      </view>
+      <view class="icon-btn" bindtap='addPhoto'>
+        <text class="icon"></text>
+        <text class="text">更换照片</text>
+      </view>
+    </view>
+
+    <view class="toolbar-center">
+      <view bindtap="changeType1">
+        <text class="text">拼图</text>
+      </view>
+      <view bindtap='changeType2'>
+        <text class="text" style="font-weight: bold;">边框</text>
+      </view>
+      <!-- changeType3 -->
+      <view bindtap=''>
+        <text class="text">姓氏</text>
+      </view>
+    </view>
+  </view>
+  <!-- 裁剪和添加文字时调出的确认条 -->
+  <view class="confirm-bar1" wx:if="{{false}}">
+    <text class="icon-cross" bindtap="cancelAddText"></text>
+  </view>
+  <view class="confirm-bar2" wx:if="{{false}}">
+    <text class="icon-checkmark" bindtap="competeAddText"></text>
+  </view>
+</view>
+<!-- =============================== 边框 ======================================== -->
+<view class="border-page" wx:if="{{isShowBorder}}">
+  <!-- 保存按钮 
+  <view class="saveButton"  wx:if="{{!isTextEdit}}" bindtap='saveImgToPhone'><text class="icon-save"></text></view>-->
+  <view class="imageView">
+    <image src="{{emotionUrl}}" disable-scroll="true"></image>
+    <text wx:for="{{allText}}" wx:key="idx" bindtap="{{item.isTextActive?'focusInput':null}}" bindtouchstart="{{item.isTextActive?'textMoveStart':null}}" bindtouchmove="{{item.isTextActive?'textMove':null}}" class="{{item.isTextActive?'active-text':'compete-text'}}"
+      style="left:{{item.textL}}px;top:{{item.textT}}px;font-size:{{item.fontSize}}px;color:{{item.fontColor}};font-style:{{item.fontStyle}};font-weight:{{item.fontWeight}}">{{item.someText}}</text>
+    <input focus="{{inputFocus}}" confirm-type="done" bindinput="inputText" style="position:absolute;top:0;left:-9999px;"></input>
+    <canvas canvas-id="tempCanvas" disable-scroll="true" style="width:400rpx; height:400rpx;position:absolute;left:-99999px;"></canvas>
+  </view>
+  <view>
+    <view wx:if="{{isChooseFontSize}}" class="toolbar-top toolbar-width">
+      <view class="slider-box">
+        <slider bindchange="fontsizeSliderChange" min="8" max="200" value="14" show-value></slider>
+      </view>
+    </view>
+    <view wx:if="{{isChooseFontColor}}" class="toolbar-top">
+      <view class="color-box">
+        <view wx:for="{{allColor}}" class="color-point" data-selected="{{item}}" style="background:{{item}}" bindtap='fontColorChange'></view>
+      </view>
+    </view>
+    <view wx:if="{{isChooseFontPattern}}" class="toolbar-top toolbar-font-style">
+      <view>
+        <text>斜体 : </text>
+        <switch bindchange="fontStyleChange" />
+      </view>
+      <view>
+        <text>加粗 : </text>
+        <switch bindchange="fontWeightChange" />
+      </view>
+    </view>
+    <!-- 底部工具 -->
+    <view class="toolbar-bottom">
+      <!-- <view>
+        <text>请输入姓氏</text>
+        <input confirm-type="done" placeholder="请输入姓氏" maxlength="1" bindinput="inputText"></input>
+        <button bindtap="competeAddText">生成图片</button>
+      </view> -->
+      <view class="row">
+        <view class="btn border" bindtap='addFrame'>
+          <button wx:if="{{canIUse}}" class="auth-btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"></button>
+          <!-- <text class="icon-frame"></text> -->
+          获取头像
+        </view>
+        <view class="btn active" bindtap='saveImgToPhone'>
+          <!-- <text class="icon-photo"></text> -->
+          生成照片
+        </view>
+      </view>
+      <view class="icon-btn" bindtap='addPhoto'>
+        <text class="icon"></text>
+        <text class="text">更换照片</text>
+      </view>
+    </view>
+    <!-- 中间导航Tab -->
+    <view class="toolbar-center">
+      <view bindtap="changeType1">
+        <text class="text">拼图</text>
+      </view>
+      <view bindtap='changeType2'>
+        <text class="text" style="font-weight: bold;">边框</text>
+      </view>
+      <view bindtap='changeType3'>
+        <text class="text">姓氏</text>
+      </view>
+    </view>
+
+    <!-- 相框选择窗口 -->
+    <view class="farmeChoose">
+      <view class="farmeChoose-top">
+        <text class="farmeChoose-top-left">请选择模板</text>
+      </view>
+      <scroll-view scroll-x="true">
+        <view wx:for="{{frameSrcs}}" wx:key="*this" data-src="{{item.src}}" data-index="{{index}}" class="frameBox" bindtap='chooseFrame'>
+          <view class="img-wrap">
+            <image src="{{'../../image/frame70/'+item.src}}" mode="aspectFit"></image>
+          </view>
+          <view class="choosed-icon" wx:if="{{index == choosedIndex}}">
+            <image class="img" src="/image/my_btn_choose_def.png" mode="aspectFill"></image>
+          </view>
+          <!-- <text>{{item.title}}</text> -->
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 裁剪和添加文字时调出的确认条 -->
+  <view class="confirm-bar1" wx:if="{{false}}">
+    <text class="icon-cross" bindtap="cancelAddText"></text>
+  </view>
+  <view class="confirm-bar2" wx:if="{{false}}">
+    <text class="icon-checkmark" bindtap="competeAddText"></text>
+  </view>
+
+</view>
+
+<!-- =============================== 姓氏 ======================================== -->
+<view class="name-page" wx:if="{{isShowName}}">
+  <!-- 保存按钮 
+  <view class="saveButton"  wx:if="{{!isTextEdit}}" bindtap='saveImgToPhone'><text class="icon-save"></text></view>-->
+  <view class="imageView">
+    <image src="{{emotionUrl}}" disable-scroll="true"></image>
+    <text wx:for="{{allText}}" wx:key="idx" bindtap="{{item.isTextActive?'focusInput':null}}" bindtouchstart="{{item.isTextActive?'textMoveStart':null}}" bindtouchmove="{{item.isTextActive?'textMove':null}}" class="{{item.isTextActive?'active-text':'compete-text'}}"
+      style="left:{{item.textL}}px;top:{{item.textT}}px;font-size:{{item.fontSize}}px;color:{{item.fontColor}};font-style:{{item.fontStyle}};font-weight:{{item.fontWeight}}">{{item.someText}}</text>
+    <input focus="{{inputFocus}}" confirm-type="done" bindinput="inputText" style="position:absolute;top:0;left:-9999px;"></input>
+    <canvas canvas-id="tempCanvas" disable-scroll="true" style="width:400rpx; height:400rpx;position:absolute;left:-99999px;"></canvas>
+  </view>
+
+  <view>
+    <view wx:if="{{isChooseFontSize}}" class="toolbar-top toolbar-width">
+      <view class="slider-box">
+        <slider bindchange="fontsizeSliderChange" min="8" max="200" value="14" show-value></slider>
+      </view>
+    </view>
+    <view wx:if="{{isChooseFontColor}}" class="toolbar-top">
+      <view class="color-box">
+        <view wx:for="{{allColor}}" class="color-point" data-selected="{{item}}" style="background:{{item}}" bindtap='fontColorChange'></view>
+      </view>
+    </view>
+    <view wx:if="{{isChooseFontPattern}}" class="toolbar-top toolbar-font-style">
+      <view>
+        <text>斜体 : </text>
+        <switch bindchange="fontStyleChange" />
+      </view>
+      <view>
+        <text>加粗 : </text>
+        <switch bindchange="fontWeightChange" />
+      </view>
+    </view>
+    <!-- 姓氏输入窗口 -->
+    <view class="farmeChoose">
+      <view class="farmeChoose-top">
+        <!-- <text class="farmeChoose-top-left">请输入姓氏</text> -->
+      </view>
+      <view class="frameBox">
+        <input confirm-type="done" class="name-input" placeholder="请输入姓氏" value="{{inputValue}}" placeholder-class="placeholder"  maxlength="1" bindinput="inputText"></input>
+      </view>
+    </view>
+    <view class="toolbar-bottom">
+      <view class="">
+        <view class="btn active" bindtap='competeAddText'>
+          生成照片
+        </view>
+      </view>
+      <view class="icon-btn" bindtap='clearInput'>
+        <view class="icon">
+          <image class="img" src="/image/reset.png"></image>
+        </view>
+        <text class="text">重置</text>
+      </view>
+    </view>
+
+    <view class="toolbar-center">
+      <view bindtap="changeType1">
+        <text class="text">拼图</text>
+      </view>
+      <view bindtap='changeType2'>
+        <text class="text">边框</text>
+      </view>
+      <view bindtap='changeType3'>
+        <text class="text" style="font-weight: bold;">姓氏</text>
+      </view>
+    </view>
+  </view>
+  <!-- 裁剪和添加文字时调出的确认条 -->
+  <view class="confirm-bar1" wx:if="{{false}}">
+    <text class="icon-cross" bindtap="cancelAddText"></text>
+  </view>
+  <view class="confirm-bar2" wx:if="{{false}}">
+    <text class="icon-checkmark" bindtap="competeAddText"></text>
+  </view>
+</view>

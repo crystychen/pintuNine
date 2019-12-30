@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/border/border",
+    "pages/pintu/pintu",
+    "pages/home/home",
+    "pages/name/name",
+    "pages/pintuToast/index"
+  ],
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/pintu/pintu"
+      },
+      {
+        "pagePath": "pages/border/border"
+      },
+      {
+        "pagePath": "pages/name/name"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "搞机超好玩",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

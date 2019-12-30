@@ -1,0 +1,167 @@
+.pintu-page {
+    height: 100%;
+    overflow: hidden;
+}
+
+.row {
+    /* width: 100%; */
+}
+
+.wrap {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 400rpx;
+}
+
+.icon {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 0 20rpx;
+}
+
+.images-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 30rpx auto;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+}
+
+.item {
+    margin: 10rpx 20rpx;
+    position: relative;
+}
+
+.item-wrap {
+    width: 100rpx;
+    height: 100rpx;
+    position: relative;
+}
+
+.item-wrap .img {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.num {
+    position: absolute;
+    width: 30rpx;
+    height: 30rpx;
+    background: #fe9b0a;
+    color: #fff;
+    bottom: 0;
+    right: 0;
+    font-size: 26rpx;
+    line-height: 1;
+    text-align: center;
+}
+
+.tips {
+    color: #c3c3c3;
+    font-size: 20rpx;
+    text-align: center;
+}
+
+.tips:before {
+    position: absolute;
+    left: 50%;
+    bottom: 20rpx;
+    width: 8rpx;
+    height: 8rpx;
+    transform: rotate(45deg);
+    border: 1rpx solid red;
+}
+
+.tips::after {}
+
+.media {
+    display: flex;
+    flex-direction: row;
+    margin: 40rpx 20rpx;
+}
+
+.left {
+    width: 90rpx;
+    height: 90rpx;
+}
+
+.left .img {
+    width: 90rpx;
+    height: 90rpx;
+}
+
+.right {
+    flex: 1;
+    margin-left: 20rpx;
+}
+
+.text-top {
+    font-weight: bold;
+    color: #706F78;
+    font-size: 32rpx;
+}
+
+.text-bottom {
+    line-height: 2;
+    font-size: 28rpx;
+}
+
+.media .right .img-wrap {
+    width: 300rpx;
+    height: 300rpx;
+    background: #c3c3c3;
+    margin: 20rpx 0;
+}
+
+.media .right .img-wrap .img {
+    width: 300rpx;
+    height: 300rpx;
+}
+
+.share-row {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20rpx 0;
+}
+
+.share-row .icon {
+    width: 80rpx;
+    height: 80rpx;
+    background: #fe9b0a;
+    border-radius: 50rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.share-row .icon .img {
+    width: 60rpx;
+    height: 60rpx;
+    /* background: #fe9b0a; */
+    border-radius: 50rpx;
+    position: relative;
+    left: 4rpx;
+}
+.share-row .text {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+.auth-btn {
+    position: absolute;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}

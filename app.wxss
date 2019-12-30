@@ -1,0 +1,25 @@
+/**app.wxss**/
+
+text, view {
+  font-family: "OpenSansRegular";
+  font-size: 28upx;
+  line-height: 1.8;
+}
+
+/* 清除button默认样式 */
+
+button::after {
+  border: 0;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.button-hover {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
